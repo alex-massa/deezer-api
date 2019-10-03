@@ -2,7 +2,12 @@ package deezer.model;
 
 import deezer.model.data.*;
 
-public class Chart {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Chart implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Tracks tracks;
     private Albums albums;
@@ -54,5 +59,35 @@ public class Chart {
         this.podcasts = podcasts;
         return this;
     }
-    
+
+    @Override
+    public String toString() {
+        return  "Chart{" +
+                "tracks=" + this.tracks + ", " +
+                "albums=" + this.albums + ", " +
+                "artists=" + this.artists + ", " +
+                "playlists=" + this.playlists + ", " +
+                "podcasts=" + this.podcasts +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Chart chart = (Chart) other;
+        return  Objects.equals(this.tracks, chart.tracks) &&
+                Objects.equals(this.albums, chart.albums) &&
+                Objects.equals(this.artists, chart.artists) &&
+                Objects.equals(this.playlists, chart.playlists) &&
+                Objects.equals(this.podcasts, chart.podcasts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.tracks, this.albums, this.artists, this.playlists, this.podcasts);
+    }
+
 }

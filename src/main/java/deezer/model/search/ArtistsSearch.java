@@ -1,6 +1,8 @@
 package deezer.model.search;
 
-public class ArtistsSearch extends Search {
+import deezer.model.Artist;
+
+public class ArtistsSearch extends Search<Artist> {
 
     public ArtistsSearch(String query) {
         super(query);

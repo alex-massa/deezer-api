@@ -1,6 +1,8 @@
 package deezer.model.search;
 
-public class UsersSearch extends Search {
+import deezer.model.interfaces.Searchable;
+
+public class UsersSearch extends Search<Searchable> {
 
     public UsersSearch(String query) {
         super(query);

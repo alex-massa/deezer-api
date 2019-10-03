@@ -4,9 +4,13 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import util.URLTypeAdapter;
 
+import java.io.Serializable;
 import java.net.URL;
+import java.util.Objects;
 
-public class Genre {
+public class Genre implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;
@@ -83,5 +87,40 @@ public class Genre {
         this.xlPicture = xlPicture;
         return this;
     }
-    
+
+    @Override
+    public String toString() {
+        return  "Genre{" +
+                "id=" + this.id + ", " +
+                "name=" + (this.name == null ? null : "'" + this.name + "'") + ", " +
+                "picture=" + this.picture + ", " +
+                "smallPicture=" + this.smallPicture + ", " +
+                "mediumPicture=" + this.mediumPicture + ", " +
+                "bigPicture=" + this.bigPicture + ", " +
+                "xlPicture=" + this.xlPicture +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Genre genre = (Genre) other;
+        return  Objects.equals(this.id, genre.id) &&
+                Objects.equals(this.name, genre.name) &&
+                Objects.equals(this.picture, genre.picture) &&
+                Objects.equals(this.smallPicture, genre.smallPicture) &&
+                Objects.equals(this.mediumPicture, genre.mediumPicture) &&
+                Objects.equals(this.bigPicture, genre.bigPicture) &&
+                Objects.equals(this.xlPicture, genre.xlPicture);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.name, this.picture, this.smallPicture, this.mediumPicture, this.bigPicture,
+                            this.xlPicture);
+    }
+
 }

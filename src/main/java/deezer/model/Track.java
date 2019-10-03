@@ -2,21 +2,28 @@ package deezer.model;
 
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import deezer.model.interfaces.Searchable;
 import util.URLTypeAdapter;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
-public class Track {
+public class Track implements Serializable, Searchable {
 
-    public static class ExplicitContentLevels {
+    private static final long serialVersionUID = 1L;
+
+    public static final class ExplicitContentLevels {
 
         public static final int NOT_EXPLICIT = 0;
         public static final int EXPLICIT = 1;
         public static final int UNKNOWN = 2;
         public static final int EDITED = 3;
         public static final int NO_ADVICE_AVAILABLE = 6;
+
+        private ExplicitContentLevels() {}
 
     }
 
@@ -294,5 +301,81 @@ public class Track {
         this.position = position;
         return this;
     }
-    
+
+    @Override
+    public String toString() {
+        return  "Track{" +
+                "id=" + this.id + ", " +
+                "isReadable=" + this.isReadable + ", " +
+                "title=" + (this.title == null ? null : "'" + this.title + "'") + ", " +
+                "shortTitle=" + (this.shortTitle == null ? null : "'" + this.shortTitle + "'") + ", " +
+                "titleVersion=" + (this.titleVersion == null ? null : "'" + this.titleVersion + "'") + ", " +
+                "isUnseen=" + this.isUnseen + ", " +
+                "isrc=" + (this.isrc == null ? null : "'" + this.isrc + "'") + ", " +
+                "link=" + this.link + ", " +
+                "share=" + this.share + ", " +
+                "duration=" + this.duration + ", " +
+                "trackPosition=" + this.trackPosition + ", " +
+                "diskNumber=" + this.diskNumber + ", " +
+                "rank=" + this.rank + ", " +
+                "releaseDate=" + this.releaseDate + ", " +
+                "hasExplicitLyrics=" + this.hasExplicitLyrics + ", " +
+                "explicitContentLyrics=" + this.explicitContentLyrics + ", " +
+                "explicitContentCover=" + this.explicitContentCover + ", " +
+                "preview=" + this.preview + ", " +
+                "bpm=" + this.bpm + ", " +
+                "gain=" + this.gain + ", " +
+                "availableCounties=" + this.availableCounties + ", " +
+                "alternative=" + this.alternative + ", " +
+                "contributors=" + this.contributors + ", " +
+                "artist=" + this.artist + ", " +
+                "album=" + this.album + ", " +
+                "position=" + this.position +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Track track = (Track) other;
+        return  Objects.equals(this.id, track.id) &&
+                Objects.equals(this.isReadable, track.isReadable) &&
+                Objects.equals(this.title, track.title) &&
+                Objects.equals(this.shortTitle, track.shortTitle) &&
+                Objects.equals(this.titleVersion, track.titleVersion) &&
+                Objects.equals(this.isUnseen, track.isUnseen) &&
+                Objects.equals(this.isrc, track.isrc) &&
+                Objects.equals(this.link, track.link) &&
+                Objects.equals(this.share, track.share) &&
+                Objects.equals(this.duration, track.duration) &&
+                Objects.equals(this.trackPosition, track.trackPosition) &&
+                Objects.equals(this.diskNumber, track.diskNumber) &&
+                Objects.equals(this.rank, track.rank) &&
+                Objects.equals(this.releaseDate, track.releaseDate) &&
+                Objects.equals(this.hasExplicitLyrics, track.hasExplicitLyrics) &&
+                Objects.equals(this.explicitContentLyrics, track.explicitContentLyrics) &&
+                Objects.equals(this.explicitContentCover, track.explicitContentCover) &&
+                Objects.equals(this.preview, track.preview) &&
+                Objects.equals(this.bpm, track.bpm) &&
+                Objects.equals(this.gain, track.gain) &&
+                Objects.equals(this.availableCounties, track.availableCounties) &&
+                Objects.equals(this.alternative, track.alternative) &&
+                Objects.equals(this.contributors, track.contributors) &&
+                Objects.equals(this.artist, track.artist) &&
+                Objects.equals(this.album, track.album) &&
+                Objects.equals(this.position, track.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.isReadable, this.title, this.shortTitle, this.titleVersion, this.isUnseen,
+                            this.isrc, this.link, this.share, this.duration, this.trackPosition, this.diskNumber,
+                            this.rank, this.releaseDate, this.hasExplicitLyrics, this.explicitContentLyrics,
+                            this.explicitContentCover, this.preview, this.bpm, this.gain, this.availableCounties,
+                            this.alternative, this.contributors, this.artist, this.album, this.position);
+    }
+
 }

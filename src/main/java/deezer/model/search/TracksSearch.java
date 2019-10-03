@@ -1,6 +1,8 @@
 package deezer.model.search;
 
-public class TracksSearch extends Search {
+import deezer.model.interfaces.Searchable;
+
+public class TracksSearch extends Search<Searchable> {
 
     public enum SearchOrder {
         RANKING,

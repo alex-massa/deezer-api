@@ -4,18 +4,22 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import util.URLTypeAdapter;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
-public abstract class Data<T> {
+public abstract class Data<T> implements Serializable {
 
-    private List<T> data;
-    private String checksum;
-    private Integer total;
+    private static final long serialVersionUID = 1L;
+
+    List<T> data;
+    String checksum;
+    Integer total;
     @SerializedName("prev") @JsonAdapter(URLTypeAdapter.class)
-    private URL previousResults;
+    URL previousResults;
     @SerializedName("next") @JsonAdapter(URLTypeAdapter.class)
-    private URL nextResults;
+    URL nextResults;
 
     public List<T> getData() {
         return this.data;
@@ -60,6 +64,36 @@ public abstract class Data<T> {
     public Data<T> setNextResults(URL nextResults) {
         this.nextResults = nextResults;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return  "Data{" +
+                "data=" + this.data + ", " +
+                "checksum=" + (this.checksum == null ? null : "'" + this.checksum + "'") + ", " +
+                "total=" + this.total + ", " +
+                "previousResults=" + this.previousResults + ", " +
+                "nextResults=" + this.nextResults +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Data<?> data = (Data<?>) other;
+        return  Objects.equals(this.data, data.data) &&
+                Objects.equals(this.checksum, data.checksum) &&
+                Objects.equals(this.total, data.total) &&
+                Objects.equals(this.previousResults, data.previousResults) &&
+                Objects.equals(this.nextResults, data.nextResults);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.data, this.checksum, this.total, this.previousResults, this.nextResults);
     }
 
 }

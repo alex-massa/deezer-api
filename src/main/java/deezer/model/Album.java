@@ -5,15 +5,20 @@ import com.google.gson.annotations.SerializedName;
 import deezer.model.data.Genres;
 import deezer.model.data.Tracks;
 import deezer.model.interfaces.Commentable;
+import deezer.model.interfaces.Searchable;
 import util.URLTypeAdapter;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
-public class Album implements Commentable {
+public class Album implements Serializable, Searchable, Commentable {
 
-    public static class ExplicitContentLevels {
+    private static final long serialVersionUID = 1L;
+
+    public static final class ExplicitContentLevels {
 
         public static final int NOT_EXPLICIT = 0;
         public static final int EXPLICIT = 1;
@@ -23,6 +28,8 @@ public class Album implements Commentable {
         public static final int PARTIALLY_UNKNOWN = 5;
         public static final int NO_ADVICE_AVAILABLE = 6;
         public static final int PARTIALLY_NO_ADVICE_AVAILABLE = 7;
+
+        private ExplicitContentLevels() {}
 
     }
 
@@ -333,6 +340,89 @@ public class Album implements Commentable {
     public Album setPosition(Integer position) {
         this.position = position;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return  "Album{" +
+                "id=" + this.id + ", " +
+                "title=" + (this.title == null ? null : "'" + this.title + "'") + ", " +
+                "upc=" + (this.upc == null ? null : "'" + this.upc + "'") + ", " +
+                "link=" + this.link + ", " +
+                "share=" + this.share + ", " +
+                "cover=" + this.cover + ", " +
+                "smallCover=" + this.smallCover + ", " +
+                "mediumCover=" + this.mediumCover + ", " +
+                "bigCover=" + this.bigCover + ", " +
+                "xlCover=" + this.xlCover + ", " +
+                "genreId=" + this.genreId + ", " +
+                "genres=" + this.genres + ", " +
+                "label=" + (this.label == null ? null : "'" + this.label + "'") + ", " +
+                "numberOfTracks=" + this.numberOfTracks + ", " +
+                "duration=" + this.duration + ", " +
+                "numberOfFans=" + this.numberOfFans + ", " +
+                "rating=" + this.rating + ", " +
+                "releaseDate=" + this.releaseDate + ", " +
+                "recordType=" + (this.recordType == null ? null : "'" + this.recordType + "'") + ", " +
+                "isAvailable=" + this.isAvailable + ", " +
+                "alternative=" + this.alternative + ", " +
+                "tracklist=" + this.tracklist + ", " +
+                "hasExplicitLyrics=" + this.hasExplicitLyrics + ", " +
+                "explicitContentLyrics=" + this.explicitContentLyrics + ", " +
+                "explicitContentCover=" + this.explicitContentCover + ", " +
+                "contributors=" + this.contributors + ", " +
+                "artist=" + this.artist + ", " +
+                "tracks=" + this.tracks + ", " +
+                "position=" + this.position +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Album album = (Album) other;
+        return  Objects.equals(this.id, album.id) &&
+                Objects.equals(this.title, album.title) &&
+                Objects.equals(this.upc, album.upc) &&
+                Objects.equals(this.link, album.link) &&
+                Objects.equals(this.share, album.share) &&
+                Objects.equals(this.cover, album.cover) &&
+                Objects.equals(this.smallCover, album.smallCover) &&
+                Objects.equals(this.mediumCover, album.mediumCover) &&
+                Objects.equals(this.bigCover, album.bigCover) &&
+                Objects.equals(this.xlCover, album.xlCover) &&
+                Objects.equals(this.genreId, album.genreId) &&
+                Objects.equals(this.genres, album.genres) &&
+                Objects.equals(this.label, album.label) &&
+                Objects.equals(this.numberOfTracks, album.numberOfTracks) &&
+                Objects.equals(this.duration, album.duration) &&
+                Objects.equals(this.numberOfFans, album.numberOfFans) &&
+                Objects.equals(this.rating, album.rating) &&
+                Objects.equals(this.releaseDate, album.releaseDate) &&
+                Objects.equals(this.recordType, album.recordType) &&
+                Objects.equals(this.isAvailable, album.isAvailable) &&
+                Objects.equals(this.alternative, album.alternative) &&
+                Objects.equals(this.tracklist, album.tracklist) &&
+                Objects.equals(this.hasExplicitLyrics, album.hasExplicitLyrics) &&
+                Objects.equals(this.explicitContentLyrics, album.explicitContentLyrics) &&
+                Objects.equals(this.explicitContentCover, album.explicitContentCover) &&
+                Objects.equals(this.contributors, album.contributors) &&
+                Objects.equals(this.artist, album.artist) &&
+                Objects.equals(this.tracks, album.tracks) &&
+                Objects.equals(this.position, album.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.title, this.upc, this.link, this.share, this.cover, this.smallCover,
+                            this.mediumCover, this.bigCover, this.xlCover, this.genreId, this.genres, this.label,
+                            this.numberOfTracks, this.duration, this.numberOfFans, this.rating, this.releaseDate,
+                            this.recordType, this.isAvailable, this.alternative, this.tracklist, this.hasExplicitLyrics,
+                            this.explicitContentLyrics, this.explicitContentCover, this.contributors, this.artist,
+                            this.tracks, this.position);
     }
 
 }

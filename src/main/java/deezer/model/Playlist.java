@@ -3,11 +3,16 @@ package deezer.model;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import deezer.model.data.Tracks;
+import deezer.model.interfaces.Searchable;
 import util.URLTypeAdapter;
 
+import java.io.Serializable;
 import java.net.URL;
+import java.util.Objects;
 
-public class Playlist {
+public class Playlist implements Serializable, Searchable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String title;
@@ -243,5 +248,73 @@ public class Playlist {
         this.position = position;
         return this;
     }
-    
+
+    @Override
+    public String toString() {
+        return  "Playlist{" +
+                "id=" + this.id + ", " +
+                "title=" + (this.title == null ? null : "'" + this.title + "'") + ", " +
+                "description=" + (this.description == null ? null : "'" + this.description + "'") + ", " +
+                "duration=" + this.duration + ", " +
+                "isPublic=" + this.isPublic + ", " +
+                "isLovedTracksPlaylist=" + this.isLovedTracksPlaylist + ", " +
+                "isCollaborative=" + this.isCollaborative + ", " +
+                "rating=" + this.rating + ", " +
+                "numberOfTracks=" + this.numberOfTracks + ", " +
+                "unseenTracksCount=" + this.unseenTracksCount + ", " +
+                "numberOfFans=" + this.numberOfFans + ", " +
+                "link=" + this.link + ", " +
+                "share=" + this.share + ", " +
+                "picture=" + this.picture + ", " +
+                "smallPicture=" + this.smallPicture + ", " +
+                "mediumPicture=" + this.mediumPicture + ", " +
+                "bigPicture=" + this.bigPicture + ", " +
+                "xlPicture=" + this.xlPicture + ", " +
+                "checksum=" + (this.checksum == null ? null : "'" + this.checksum + "'") + ", " +
+                "creator=" + this.creator + ", " +
+                "tracks=" + this.tracks + ", " +
+                "position=" + this.position +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Playlist playlist = (Playlist) other;
+        return  Objects.equals(this.id, playlist.id) &&
+                Objects.equals(this.title, playlist.title) &&
+                Objects.equals(this.description, playlist.description) &&
+                Objects.equals(this.duration, playlist.duration) &&
+                Objects.equals(this.isPublic, playlist.isPublic) &&
+                Objects.equals(this.isLovedTracksPlaylist, playlist.isLovedTracksPlaylist) &&
+                Objects.equals(this.isCollaborative, playlist.isCollaborative) &&
+                Objects.equals(this.rating, playlist.rating) &&
+                Objects.equals(this.numberOfTracks, playlist.numberOfTracks) &&
+                Objects.equals(this.unseenTracksCount, playlist.unseenTracksCount) &&
+                Objects.equals(this.numberOfFans, playlist.numberOfFans) &&
+                Objects.equals(this.link, playlist.link) &&
+                Objects.equals(this.share, playlist.share) &&
+                Objects.equals(this.picture, playlist.picture) &&
+                Objects.equals(this.smallPicture, playlist.smallPicture) &&
+                Objects.equals(this.mediumPicture, playlist.mediumPicture) &&
+                Objects.equals(this.bigPicture, playlist.bigPicture) &&
+                Objects.equals(this.xlPicture, playlist.xlPicture) &&
+                Objects.equals(this.checksum, playlist.checksum) &&
+                Objects.equals(this.creator, playlist.creator) &&
+                Objects.equals(this.tracks, playlist.tracks) &&
+                Objects.equals(this.position, playlist.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.title, this.description, this.duration, this.isPublic,
+                            this.isLovedTracksPlaylist, this.isCollaborative, this.rating, this.numberOfTracks,
+                            this.unseenTracksCount, this.numberOfFans, this.link, this.share, this.picture,
+                            this.smallPicture, this.mediumPicture, this.bigPicture, this.xlPicture, this.checksum,
+                            this.creator, this.tracks, this.position);
+    }
+
 }

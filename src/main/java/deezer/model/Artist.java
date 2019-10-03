@@ -3,11 +3,16 @@ package deezer.model;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import deezer.model.interfaces.Commentable;
+import deezer.model.interfaces.Searchable;
 import util.URLTypeAdapter;
 
+import java.io.Serializable;
 import java.net.URL;
+import java.util.Objects;
 
-public class Artist implements Commentable {
+public class Artist implements Serializable, Searchable, Commentable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;
@@ -160,6 +165,56 @@ public class Artist implements Commentable {
     public Artist setPosition(Integer position) {
         this.position = position;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return  "Artist{" +
+                "id=" + this.id + ", " +
+                "name=" + (this.name == null ? null : "'" + this.name + "'") + ", " +
+                "link=" + this.link + ", " +
+                "share=" + this.share + ", " +
+                "picture=" + this.picture + ", " +
+                "smallPicture=" + this.smallPicture + ", " +
+                "mediumPicture=" + this.mediumPicture + ", " +
+                "bigPicture=" + this.bigPicture + ", " +
+                "xlPicture=" + this.xlPicture + ", " +
+                "numberOfAlbums=" + this.numberOfAlbums + ", " +
+                "numberOfFans=" + this.numberOfFans + ", " +
+                "hasRadio=" + this.hasRadio + ", " +
+                "tracklist=" + this.tracklist + ", " +
+                "position=" + this.position +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Artist artist = (Artist) other;
+        return  Objects.equals(this.id, artist.id) &&
+                Objects.equals(this.name, artist.name) &&
+                Objects.equals(this.link, artist.link) &&
+                Objects.equals(this.share, artist.share) &&
+                Objects.equals(this.picture, artist.picture) &&
+                Objects.equals(this.smallPicture, artist.smallPicture) &&
+                Objects.equals(this.mediumPicture, artist.mediumPicture) &&
+                Objects.equals(this.bigPicture, artist.bigPicture) &&
+                Objects.equals(this.xlPicture, artist.xlPicture) &&
+                Objects.equals(this.numberOfAlbums, artist.numberOfAlbums) &&
+                Objects.equals(this.numberOfFans, artist.numberOfFans) &&
+                Objects.equals(this.hasRadio, artist.hasRadio) &&
+                Objects.equals(this.tracklist, artist.tracklist) &&
+                Objects.equals(this.position, artist.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.name, this.link, this.share, this.picture, this.smallPicture,
+                            this.mediumPicture, this.bigPicture, this.xlPicture, this.numberOfAlbums, this.numberOfFans,
+                            this.hasRadio, this.tracklist, this.position);
     }
 
 }

@@ -2,19 +2,26 @@ package deezer.model;
 
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import deezer.model.interfaces.Searchable;
 import util.URLTypeAdapter;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
-public class User {
+public class User implements Serializable, Searchable {
 
-    public static class ExplicitContentLevels {
+    private static final long serialVersionUID = 1L;
+
+    public static final class ExplicitContentLevels {
 
         public static final String DISPLAY = "explicit_display";
         public static final String NO_RECOMMENDATION = "explicit_no_recommendation";
         public static final String HIDE = "explicit_hide";
+
+        private ExplicitContentLevels() {}
 
     }
 
@@ -242,5 +249,71 @@ public class User {
         this.tracklist = tracklist;
         return this;
     }
-    
+
+    @Override
+    public String toString() {
+        return  "User{" +
+                "id=" + this.id + ", " +
+                "name=" + (this.name == null ? null : "'" + this.name + "'") + ", " +
+                "lastName=" + (this.lastName == null ? null : "'" + this.lastName + "'") + ", " +
+                "firstName=" + (this.firstName == null ? null : "'" + this.firstName + "'") + ", " +
+                "email=" + (this.email == null ? null : "'" + this.email + "'") + ", " +
+                "status=" + this.status + ", " +
+                "birthday=" + this.birthday + ", " +
+                "inscriptionDate=" + this.inscriptionDate + ", " +
+                "gender=" + this.gender + ", " +
+                "link=" + this.link + ", " +
+                "picture=" + this.picture + ", " +
+                "smallPicture=" + this.smallPicture + ", " +
+                "mediumPicture=" + this.mediumPicture + ", " +
+                "bigPicture=" + this.bigPicture + ", " +
+                "xlPicture=" + this.xlPicture + ", " +
+                "country=" + (this.country == null ? null : "'" + this.country + "'") + ", " +
+                "language=" + (this.language == null ? null : "'" + this.language + "'") + ", " +
+                "isKid=" + this.isKid + ", " +
+                "explicitContentLevel=" + (this.explicitContentLevel == null ? null : "'" + this.explicitContentLevel + "'") + ", " +
+                "availableExplicitContentLevels=" + this.availableExplicitContentLevels + ", " +
+                "tracklist=" + this.tracklist +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        User user = (User) other;
+        return  Objects.equals(this.id, user.id) &&
+                Objects.equals(this.name, user.name) &&
+                Objects.equals(this.lastName, user.lastName) &&
+                Objects.equals(this.firstName, user.firstName) &&
+                Objects.equals(this.email, user.email) &&
+                Objects.equals(this.status, user.status) &&
+                Objects.equals(this.birthday, user.birthday) &&
+                Objects.equals(this.inscriptionDate, user.inscriptionDate) &&
+                Objects.equals(this.gender, user.gender) &&
+                Objects.equals(this.link, user.link) &&
+                Objects.equals(this.picture, user.picture) &&
+                Objects.equals(this.smallPicture, user.smallPicture) &&
+                Objects.equals(this.mediumPicture, user.mediumPicture) &&
+                Objects.equals(this.bigPicture, user.bigPicture) &&
+                Objects.equals(this.xlPicture, user.xlPicture) &&
+                Objects.equals(this.country, user.country) &&
+                Objects.equals(this.language, user.language) &&
+                Objects.equals(this.isKid, user.isKid) &&
+                Objects.equals(this.explicitContentLevel, user.explicitContentLevel) &&
+                Objects.equals(this.availableExplicitContentLevels, user.availableExplicitContentLevels) &&
+                Objects.equals(this.tracklist, user.tracklist);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.name, this.lastName, this.firstName, this.email, this.status,
+                            this.birthday, this.inscriptionDate, this.gender, this.link, this.picture,
+                            this.smallPicture, this.mediumPicture, this.bigPicture, this.xlPicture, this.country,
+                            this.language, this.isKid, this.explicitContentLevel, this.availableExplicitContentLevels,
+                            this.tracklist);
+    }
+
 }

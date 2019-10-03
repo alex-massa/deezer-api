@@ -4,11 +4,15 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import util.URLTypeAdapter;
 
+import java.io.Serializable;
 import java.net.URL;
+import java.util.Objects;
 
-public class Offer {
+public class Offer implements Serializable {
 
-    private long id;
+    private static final long serialVersionUID = 1L;
+
+    private Long id;
     private String name;
     private Float amount;
     private String currency;
@@ -27,7 +31,7 @@ public class Offer {
         return this.id;
     }
 
-    public Offer setId(long id) {
+    public Offer setId(Long id) {
         this.id = id;
         return this;
     }
@@ -103,5 +107,45 @@ public class Offer {
         this.amount = amount;
         return this;
     }
-    
+
+    @Override
+    public String toString() {
+        return  "Offer{" +
+                "id=" + this.id + ", " +
+                "name=" + (this.name == null ? null : "'" + this.name + "'") + ", " +
+                "amount=" + this.amount + ", " +
+                "currency=" + (this.currency == null ? null : "'" + this.currency + "'") + ", " +
+                "displayedAmount=" + (this.displayedAmount == null ? null : "'" + this.displayedAmount + "'") + ", " +
+                "termsAndConditions=" + this.termsAndConditions + ", " +
+                "htmlTermsAndConditions=" + this.htmlTermsAndConditions + ", " +
+                "textTermsAndConditions=" + this.textTermsAndConditions + ", " +
+                "tryAndBuy=" + this.tryAndBuy +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Offer offer = (Offer) other;
+        return  Objects.equals(this.id, offer.id) &&
+                Objects.equals(this.name, offer.name) &&
+                Objects.equals(this.amount, offer.amount) &&
+                Objects.equals(this.currency, offer.currency) &&
+                Objects.equals(this.displayedAmount, offer.displayedAmount) &&
+                Objects.equals(this.termsAndConditions, offer.termsAndConditions) &&
+                Objects.equals(this.htmlTermsAndConditions, offer.htmlTermsAndConditions) &&
+                Objects.equals(this.textTermsAndConditions, offer.textTermsAndConditions) &&
+                Objects.equals(this.tryAndBuy, offer.tryAndBuy);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.name, this.amount, this.currency, this.displayedAmount,
+                            this.termsAndConditions, this.htmlTermsAndConditions, this.textTermsAndConditions,
+                            this.tryAndBuy);
+    }
+
 }

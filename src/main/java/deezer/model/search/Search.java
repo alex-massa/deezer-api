@@ -1,15 +1,17 @@
 package deezer.model.search;
 
-public abstract class Search {
+import deezer.model.interfaces.Searchable;
 
-    private String query;
-    private boolean strict;
+public abstract class Search<T extends Searchable> {
 
-    public Search(String query) {
+    String query;
+    boolean strict;
+
+    Search(String query) {
         this.query = query;
     }
 
-    public Search(String query, boolean strict) {
+    Search(String query, boolean strict) {
         this(query);
         this.strict = strict;
     }

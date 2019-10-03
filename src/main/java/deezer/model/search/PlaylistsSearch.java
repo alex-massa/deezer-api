@@ -1,6 +1,8 @@
 package deezer.model.search;
 
-public class PlaylistsSearch extends Search {
+import deezer.model.Playlist;
+
+public class PlaylistsSearch extends Search<Playlist> {
 
     public PlaylistsSearch(String query) {
         super(query);

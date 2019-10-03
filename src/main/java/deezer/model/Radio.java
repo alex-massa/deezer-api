@@ -2,11 +2,16 @@ package deezer.model;
 
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import deezer.model.interfaces.Searchable;
 import util.URLTypeAdapter;
 
+import java.io.Serializable;
 import java.net.URL;
+import java.util.Objects;
 
-public class Radio {
+public class Radio implements Serializable, Searchable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long radio;
     private String title;
@@ -115,5 +120,46 @@ public class Radio {
         this.tracklist = tracklist;
         return this;
     }
-    
+
+    @Override
+    public String toString() {
+        return  "Radio{" +
+                "radio=" + this.radio + ", " +
+                "title=" + (this.title == null ? null : "'" + this.title + "'") + ", " +
+                "description=" + (this.description == null ? null : "'" + this.description + "'") + ", " +
+                "share=" + this.share + ", " +
+                "picture=" + this.picture + ", " +
+                "smallPicture=" + this.smallPicture + ", " +
+                "mediumPicture=" + this.mediumPicture + ", " +
+                "bigPicture=" + this.bigPicture + ", " +
+                "xlPicture=" + this.xlPicture + ", " +
+                "tracklist=" + this.tracklist +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Radio radio = (Radio) other;
+        return  Objects.equals(this.radio, radio.radio) &&
+                Objects.equals(this.title, radio.title) &&
+                Objects.equals(this.description, radio.description) &&
+                Objects.equals(this.share, radio.share) &&
+                Objects.equals(this.picture, radio.picture) &&
+                Objects.equals(this.smallPicture, radio.smallPicture) &&
+                Objects.equals(this.mediumPicture, radio.mediumPicture) &&
+                Objects.equals(this.bigPicture, radio.bigPicture) &&
+                Objects.equals(this.xlPicture, radio.xlPicture) &&
+                Objects.equals(this.tracklist, radio.tracklist);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.radio, this.title, this.description, this.share, this.picture, this.smallPicture,
+                            this.mediumPicture, this.bigPicture, this.xlPicture, this.tracklist);
+    }
+
 }

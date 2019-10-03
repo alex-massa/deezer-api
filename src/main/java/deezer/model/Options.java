@@ -2,7 +2,12 @@ package deezer.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Options {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Options implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @SerializedName("stream")
     private Boolean canStream;
@@ -136,5 +141,51 @@ public class Options {
         this.canStreamRadio = canStreamRadio;
         return this;
     }
-    
+
+    @Override
+    public String toString() {
+        return  "Options{" +
+                "canStream=" + this.canStream + ", " +
+                "streamingDuration=" + this.streamingDuration + ", " +
+                "canUseOfflineMode=" + this.canUseOfflineMode + ", " +
+                "canActivateHq=" + this.canActivateHq + ", " +
+                "displaysAds=" + this.displaysAds + ", " +
+                "activatesAudioAds=" + this.activatesAudioAds + ", " +
+                "tooManyDevices=" + this.tooManyDevices + ", " +
+                "canSubscribe=" + this.canSubscribe + ", " +
+                "radioSkips=" + this.radioSkips + ", " +
+                "isLosslessAvailable=" + this.isLosslessAvailable + ", " +
+                "canDisplayPreviews=" + this.canDisplayPreviews + ", " +
+                "canStreamRadio=" + this.canStreamRadio +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Options options = (Options) other;
+        return  Objects.equals(this.canStream, options.canStream) &&
+                Objects.equals(this.streamingDuration, options.streamingDuration) &&
+                Objects.equals(this.canUseOfflineMode, options.canUseOfflineMode) &&
+                Objects.equals(this.canActivateHq, options.canActivateHq) &&
+                Objects.equals(this.displaysAds, options.displaysAds) &&
+                Objects.equals(this.activatesAudioAds, options.activatesAudioAds) &&
+                Objects.equals(this.tooManyDevices, options.tooManyDevices) &&
+                Objects.equals(this.canSubscribe, options.canSubscribe) &&
+                Objects.equals(this.radioSkips, options.radioSkips) &&
+                Objects.equals(this.isLosslessAvailable, options.isLosslessAvailable) &&
+                Objects.equals(this.canDisplayPreviews, options.canDisplayPreviews) &&
+                Objects.equals(this.canStreamRadio, options.canStreamRadio);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.canStream, this.streamingDuration, this.canUseOfflineMode, this.canActivateHq,
+                            this.displaysAds, this.activatesAudioAds, this.tooManyDevices, this.canSubscribe,
+                            this.radioSkips, this.isLosslessAvailable, this.canDisplayPreviews, this.canStreamRadio);
+    }
+
 }

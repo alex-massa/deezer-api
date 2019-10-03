@@ -14,7 +14,7 @@ Run the Maven goal `mvn clean install` on the project root containing the `pom.x
 ## Usage
 Simply create a new `DeezerClient` object and use its methods to interact with the API.
 
-Example snippet that retrieves an `Artist` object, then its `Albums` and its first 15 `Fans`:
+Example snippet that retrieves an artist object, then its albums and its first 15 fans:
 ```java
 DeezerClient client = new DeezerClient();
 final int artistId = 27;

@@ -2,9 +2,13 @@ package deezer.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
-public class Infos {
+public class Infos implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @SerializedName("country_iso")
     private String countryIso;
@@ -48,5 +52,33 @@ public class Infos {
         this.offers = offers;
         return this;
     }
-    
+
+    @Override
+    public String toString() {
+        return  "Infos{" +
+                "countryIso=" + (this.countryIso == null ? null : "'" + this.countryIso + "'") + ", " +
+                "country=" + (this.country == null ? null : "'" + this.country + "'") + ", " +
+                "isOpen=" + this.isOpen + ", " +
+                "offers=" + this.offers +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Infos infos = (Infos) other;
+        return  Objects.equals(this.countryIso, infos.countryIso) &&
+                Objects.equals(this.country, infos.country) &&
+                Objects.equals(this.isOpen, infos.isOpen) &&
+                Objects.equals(this.offers, infos.offers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.countryIso, this.country, this.isOpen, this.offers);
+    }
+
 }

@@ -1,6 +1,8 @@
 package deezer.model.search;
 
-public class RadiosSearch extends Search {
+import deezer.model.interfaces.Searchable;
+
+public class RadiosSearch extends Search<Searchable> {
 
     public RadiosSearch(String query) {
         super(query);

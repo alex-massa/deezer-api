@@ -4,9 +4,13 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import util.URLTypeAdapter;
 
+import java.io.Serializable;
 import java.net.URL;
+import java.util.Objects;
 
-public class Podcast {
+public class Podcast implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String title;
@@ -147,5 +151,53 @@ public class Podcast {
         this.position = position;
         return this;
     }
-    
+
+    @Override
+    public String toString() {
+        return  "Podcast{" +
+                "id=" + this.id + ", " +
+                "title=" + (this.title == null ? null : "'" + this.title + "'") + ", " +
+                "description='" + this.description + "', " +
+                "isAvailable=" + this.isAvailable + ", " +
+                "rating=" + this.rating + ", " +
+                "numberOfFans=" + this.numberOfFans + ", " +
+                "link=" + this.link + ", " +
+                "picture=" + this.picture + ", " +
+                "smallPicture=" + this.smallPicture + ", " +
+                "mediumPicture=" + this.mediumPicture + ", " +
+                "bigPicture=" + this.bigPicture + ", " +
+                "xlPicture=" + this.xlPicture + ", " +
+                "position=" + this.position +
+                "}";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        Podcast podcast = (Podcast) other;
+        return  Objects.equals(this.id, podcast.id) &&
+                Objects.equals(this.title, podcast.title) &&
+                Objects.equals(this.description, podcast.description) &&
+                Objects.equals(this.isAvailable, podcast.isAvailable) &&
+                Objects.equals(this.rating, podcast.rating) &&
+                Objects.equals(this.numberOfFans, podcast.numberOfFans) &&
+                Objects.equals(this.link, podcast.link) &&
+                Objects.equals(this.picture, podcast.picture) &&
+                Objects.equals(this.smallPicture, podcast.smallPicture) &&
+                Objects.equals(this.mediumPicture, podcast.mediumPicture) &&
+                Objects.equals(this.bigPicture, podcast.bigPicture) &&
+                Objects.equals(this.xlPicture, podcast.xlPicture) &&
+                Objects.equals(this.position, podcast.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.title, this.description, this.isAvailable, this.rating, this.numberOfFans,
+                            this.link, this.picture, this.smallPicture, this.mediumPicture, this.bigPicture,
+                            this.xlPicture, this.position);
+    }
+
 }
