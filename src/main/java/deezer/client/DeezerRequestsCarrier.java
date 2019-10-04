@@ -2,6 +2,7 @@ package deezer.client;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -128,11 +129,15 @@ class DeezerRequestsCarrier {
     <T> T getData(final String url, Class<T> targetClass) {
         try {
             final String response = this.requestData(url);
-            if (response.startsWith("{'\"error")) {
-                DeezerClientException.Error error = mapper.fromJson(response, DeezerClientException.Error.class);
+            if (response.startsWith("{\"error")) {
+                JsonObject errorObject = mapper.fromJson(response, JsonObject.class);
+                DeezerClientException.Error error =
+                        mapper.fromJson(errorObject.get("error"), DeezerClientException.Error.class);
                 throw new DeezerClientException(error);
             }
             return this.mapper.fromJson(response, targetClass);
+        } catch (DeezerClientException e) {
+            throw e;
         } catch (Exception e) {
             throw new DeezerClientException
                     ("An exception occurred while processing a request to URL " + url, e);

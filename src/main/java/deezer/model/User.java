@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class User implements Serializable, Searchable {
 
@@ -21,7 +22,9 @@ public class User implements Serializable, Searchable {
         public static final String NO_RECOMMENDATION = "explicit_no_recommendation";
         public static final String HIDE = "explicit_hide";
 
-        private ExplicitContentLevels() {}
+        private ExplicitContentLevels() {
+            throw new UnsupportedOperationException();
+        }
 
     }
 
@@ -252,29 +255,29 @@ public class User implements Serializable, Searchable {
 
     @Override
     public String toString() {
-        return  "User{" +
-                "id=" + this.id + ", " +
-                "name=" + (this.name == null ? null : "'" + this.name + "'") + ", " +
-                "lastName=" + (this.lastName == null ? null : "'" + this.lastName + "'") + ", " +
-                "firstName=" + (this.firstName == null ? null : "'" + this.firstName + "'") + ", " +
-                "email=" + (this.email == null ? null : "'" + this.email + "'") + ", " +
-                "status=" + this.status + ", " +
-                "birthday=" + this.birthday + ", " +
-                "inscriptionDate=" + this.inscriptionDate + ", " +
-                "gender=" + this.gender + ", " +
-                "link=" + this.link + ", " +
-                "picture=" + this.picture + ", " +
-                "smallPicture=" + this.smallPicture + ", " +
-                "mediumPicture=" + this.mediumPicture + ", " +
-                "bigPicture=" + this.bigPicture + ", " +
-                "xlPicture=" + this.xlPicture + ", " +
-                "country=" + (this.country == null ? null : "'" + this.country + "'") + ", " +
-                "language=" + (this.language == null ? null : "'" + this.language + "'") + ", " +
-                "isKid=" + this.isKid + ", " +
-                "explicitContentLevel=" + (this.explicitContentLevel == null ? null : "'" + this.explicitContentLevel + "'") + ", " +
-                "availableExplicitContentLevels=" + this.availableExplicitContentLevels + ", " +
-                "tracklist=" + this.tracklist +
-                "}";
+        return new StringJoiner(", ", User.class.getSimpleName() + "{", "}")
+                .add("id=" + this.id)
+                .add("name=" + (this.name == null ? null : "'" + this.name + "'"))
+                .add("lastName=" + (this.lastName == null ? null : "'" + this.lastName + "'"))
+                .add("firstName=" + (this.firstName == null ? null : "'" + this.firstName + "'"))
+                .add("email=" + (this.email == null ? null : "'" + this.email + "'"))
+                .add("status=" + this.status)
+                .add("birthday=" + this.birthday)
+                .add("inscriptionDate=" + this.inscriptionDate)
+                .add("gender=" + this.gender)
+                .add("link=" + this.link)
+                .add("picture=" + this.picture)
+                .add("smallPicture=" + this.smallPicture)
+                .add("mediumPicture=" + this.mediumPicture)
+                .add("bigPicture=" + this.bigPicture)
+                .add("xlPicture=" + this.xlPicture)
+                .add("country=" + (this.country == null ? null : "'" + this.country + "'"))
+                .add("language=" + (this.language == null ? null : "'" + this.language + "'"))
+                .add("isKid=" + this.isKid)
+                .add("explicitContentLevel=" + (this.explicitContentLevel == null ? null : "'" + this.explicitContentLevel + "'"))
+                .add("availableExplicitContentLevels=" + this.availableExplicitContentLevels)
+                .add("tracklist=" + this.tracklist)
+                .toString();
     }
 
     @Override

@@ -7,6 +7,7 @@ import util.URLTypeAdapter;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Genre implements Serializable {
 
@@ -90,15 +91,15 @@ public class Genre implements Serializable {
 
     @Override
     public String toString() {
-        return  "Genre{" +
-                "id=" + this.id + ", " +
-                "name=" + (this.name == null ? null : "'" + this.name + "'") + ", " +
-                "picture=" + this.picture + ", " +
-                "smallPicture=" + this.smallPicture + ", " +
-                "mediumPicture=" + this.mediumPicture + ", " +
-                "bigPicture=" + this.bigPicture + ", " +
-                "xlPicture=" + this.xlPicture +
-                "}";
+        return new StringJoiner(", ", Genre.class.getSimpleName() + "{", "}")
+                .add("id=" + this.id)
+                .add("name=" + (this.name == null ? null : "'" + this.name + "'"))
+                .add("picture=" + this.picture)
+                .add("smallPicture=" + this.smallPicture)
+                .add("mediumPicture=" + this.mediumPicture)
+                .add("bigPicture=" + this.bigPicture)
+                .add("xlPicture=" + this.xlPicture)
+                .toString();
     }
 
     @Override

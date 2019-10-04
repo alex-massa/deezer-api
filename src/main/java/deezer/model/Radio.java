@@ -8,6 +8,7 @@ import util.URLTypeAdapter;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Radio implements Serializable, Searchable {
 
@@ -123,18 +124,18 @@ public class Radio implements Serializable, Searchable {
 
     @Override
     public String toString() {
-        return  "Radio{" +
-                "radio=" + this.radio + ", " +
-                "title=" + (this.title == null ? null : "'" + this.title + "'") + ", " +
-                "description=" + (this.description == null ? null : "'" + this.description + "'") + ", " +
-                "share=" + this.share + ", " +
-                "picture=" + this.picture + ", " +
-                "smallPicture=" + this.smallPicture + ", " +
-                "mediumPicture=" + this.mediumPicture + ", " +
-                "bigPicture=" + this.bigPicture + ", " +
-                "xlPicture=" + this.xlPicture + ", " +
-                "tracklist=" + this.tracklist +
-                "}";
+        return new StringJoiner(", ", Radio.class.getSimpleName() + "{", "}")
+                .add("radio=" + this.radio)
+                .add("title=" + (this.title == null ? null : "'" + this.title + "'"))
+                .add("description=" + (this.description == null ? null : "'" + this.description + "'"))
+                .add("share=" + this.share)
+                .add("picture=" + this.picture)
+                .add("smallPicture=" + this.smallPicture)
+                .add("mediumPicture=" + this.mediumPicture)
+                .add("bigPicture=" + this.bigPicture)
+                .add("xlPicture=" + this.xlPicture)
+                .add("tracklist=" + this.tracklist)
+                .toString();
     }
 
     @Override

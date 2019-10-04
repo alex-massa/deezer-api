@@ -4,6 +4,7 @@ import deezer.model.data.*;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Chart implements Serializable {
 
@@ -62,13 +63,13 @@ public class Chart implements Serializable {
 
     @Override
     public String toString() {
-        return  "Chart{" +
-                "tracks=" + this.tracks + ", " +
-                "albums=" + this.albums + ", " +
-                "artists=" + this.artists + ", " +
-                "playlists=" + this.playlists + ", " +
-                "podcasts=" + this.podcasts +
-                "}";
+        return new StringJoiner(", ", Chart.class.getSimpleName() + "{", "}")
+                .add("tracks=" + this.tracks)
+                .add("albums=" + this.albums)
+                .add("artists=" + this.artists)
+                .add("playlists=" + this.playlists)
+                .add("podcasts=" + this.podcasts)
+                .toString();
     }
 
     @Override

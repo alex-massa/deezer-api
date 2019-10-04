@@ -3,20 +3,26 @@ package deezer.model.data;
 import deezer.model.Comment;
 
 import java.io.Serializable;
+import java.util.StringJoiner;
 
-public class Comments extends Data<Comment> implements Serializable {
+public class Comments extends Data<Comment, Comments> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Override
+    protected Comments self() {
+        return this;
+    }
+
+    @Override
     public String toString() {
-        return  "Comments{" +
-                "data=" + this.data + ", " +
-                "checksum=" + (this.checksum == null ? null : "'" + this.checksum + "'") + ", " +
-                "total=" + this.total + ", " +
-                "previousResults=" + this.previousResults + ", " +
-                "nextResults=" + this.nextResults +
-                "}";
+        return new StringJoiner(", ", Comments.class.getSimpleName() + "{", "}")
+                .add("data=" + this.data)
+                .add("checksum=" + (this.checksum == null ? null : "'" + this.checksum + "'"))
+                .add("total=" + this.total)
+                .add("previousResults=" + this.previousResults)
+                .add("nextResults=" + this.nextResults)
+                .toString();
     }
 
 }

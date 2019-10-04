@@ -2,6 +2,9 @@ package deezer.model.search;
 
 import deezer.model.interfaces.Searchable;
 
+import java.util.Objects;
+import java.util.StringJoiner;
+
 public class TracksSearch extends Search<Searchable> {
 
     public enum SearchOrder {
@@ -127,5 +130,47 @@ public class TracksSearch extends Search<Searchable> {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TracksSearch.class.getSimpleName() + "{", "}")
+                .add("order=" + this.order)
+                .add("artistQuery=" + (this.artistQuery == null ? null : "'" + this.artistQuery + "'"))
+                .add("albumQuery=" + (this.albumQuery == null ? null : "'" + this.albumQuery + "'"))
+                .add("trackQuery=" + (this.trackQuery == null ? null : "'" + this.trackQuery + "'"))
+                .add("labelQuery=" + (this.labelQuery == null ? null : "'" + this.labelQuery + "'"))
+                .add("minDuration=" + this.minDuration)
+                .add("maxDuration=" + this.maxDuration)
+                .add("minBpm=" + this.minBpm)
+                .add("maxBpm=" + this.maxBpm)
+                .add("query=" + (this.query == null ? null : "'" + this.query + "'"))
+                .add("strict=" + this.strict)
+                .toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (other == null || this.getClass() != other.getClass())
+            return false;
+        if (!super.equals(other))
+            return false;
+        TracksSearch tracksSearch = (TracksSearch) other;
+        return  this.order == tracksSearch.order &&
+                Objects.equals(this.artistQuery, tracksSearch.artistQuery) &&
+                Objects.equals(this.albumQuery, tracksSearch.albumQuery) &&
+                Objects.equals(this.trackQuery, tracksSearch.trackQuery) &&
+                Objects.equals(this.labelQuery, tracksSearch.labelQuery) &&
+                Objects.equals(this.minDuration, tracksSearch.minDuration) &&
+                Objects.equals(this.maxDuration, tracksSearch.maxDuration) &&
+                Objects.equals(this.minBpm, tracksSearch.minBpm) &&
+                Objects.equals(this.maxBpm, tracksSearch.maxBpm);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), this.order, this.artistQuery, this.albumQuery, this.trackQuery,
+                            this.labelQuery, this.minDuration, this.maxDuration, this.minBpm, this.maxBpm);
+    }
 
 }

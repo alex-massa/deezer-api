@@ -9,6 +9,7 @@ import util.URLTypeAdapter;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Artist implements Serializable, Searchable, Commentable {
 
@@ -169,22 +170,22 @@ public class Artist implements Serializable, Searchable, Commentable {
 
     @Override
     public String toString() {
-        return  "Artist{" +
-                "id=" + this.id + ", " +
-                "name=" + (this.name == null ? null : "'" + this.name + "'") + ", " +
-                "link=" + this.link + ", " +
-                "share=" + this.share + ", " +
-                "picture=" + this.picture + ", " +
-                "smallPicture=" + this.smallPicture + ", " +
-                "mediumPicture=" + this.mediumPicture + ", " +
-                "bigPicture=" + this.bigPicture + ", " +
-                "xlPicture=" + this.xlPicture + ", " +
-                "numberOfAlbums=" + this.numberOfAlbums + ", " +
-                "numberOfFans=" + this.numberOfFans + ", " +
-                "hasRadio=" + this.hasRadio + ", " +
-                "tracklist=" + this.tracklist + ", " +
-                "position=" + this.position +
-                "}";
+        return new StringJoiner(", ", Artist.class.getSimpleName() + "{", "}")
+                .add("id=" + this.id)
+                .add("name=" + (this.name == null ? null : "'" + this.name + "'"))
+                .add("link=" + this.link)
+                .add("share=" + this.share)
+                .add("picture=" + this.picture)
+                .add("smallPicture=" + this.smallPicture)
+                .add("mediumPicture=" + this.mediumPicture)
+                .add("bigPicture=" + this.bigPicture)
+                .add("xlPicture=" + this.xlPicture)
+                .add("numberOfAlbums=" + this.numberOfAlbums)
+                .add("numberOfFans=" + this.numberOfFans)
+                .add("hasRadio=" + this.hasRadio)
+                .add("tracklist=" + this.tracklist)
+                .add("position=" + this.position)
+                .toString();
     }
 
     @Override

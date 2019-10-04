@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Infos implements Serializable {
 
@@ -55,12 +56,12 @@ public class Infos implements Serializable {
 
     @Override
     public String toString() {
-        return  "Infos{" +
-                "countryIso=" + (this.countryIso == null ? null : "'" + this.countryIso + "'") + ", " +
-                "country=" + (this.country == null ? null : "'" + this.country + "'") + ", " +
-                "isOpen=" + this.isOpen + ", " +
-                "offers=" + this.offers +
-                "}";
+        return new StringJoiner(", ", Infos.class.getSimpleName() + "{", "}")
+                .add("countryIso=" + (this.countryIso == null ? null : "'" + this.countryIso + "'"))
+                .add("country=" + (this.country == null ? null : "'" + this.country + "'"))
+                .add("isOpen=" + this.isOpen)
+                .add("offers=" + this.offers)
+                .toString();
     }
 
     @Override

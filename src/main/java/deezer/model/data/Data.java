@@ -8,8 +8,9 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
-public abstract class Data<T> implements Serializable {
+public abstract class Data<T, D extends Data<T, D>> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,16 +26,16 @@ public abstract class Data<T> implements Serializable {
         return this.data;
     }
 
-    public Data<T> setData(List<T> data) {
+    public D setData(List<T> data) {
         this.data = data;
-        return this;
+        return this.self();
     }
 
     public String getChecksum() {
         return this.checksum;
     }
 
-    public Data<T> setChecksum(String checksum) {
+    public Data<T, D> setChecksum(String checksum) {
         this.checksum = checksum;
         return this;
     }
@@ -43,38 +44,46 @@ public abstract class Data<T> implements Serializable {
         return this.total;
     }
 
-    public Data<T> setTotal(Integer total) {
+    public D setTotal(Integer total) {
         this.total = total;
-        return this;
+        return this.self();
     }
 
     public URL getPreviousResults() {
         return this.previousResults;
     }
 
-    public Data<T> setPreviousResults(URL previousResults) {
+    public D setPreviousResults(URL previousResults) {
         this.previousResults = previousResults;
-        return this;
+        return this.self();
     }
 
     public URL getNextResults() {
         return this.nextResults;
     }
 
-    public Data<T> setNextResults(URL nextResults) {
+    public Data<T, D> setNextResults(URL nextResults) {
         this.nextResults = nextResults;
-        return this;
+        return this.self();
     }
+
+    public D getAsNullIfNoData() {
+        if (this.data == null || this.data.isEmpty())
+            return null;
+        return this.self();
+    }
+
+    protected abstract D self();
 
     @Override
     public String toString() {
-        return  "Data{" +
-                "data=" + this.data + ", " +
-                "checksum=" + (this.checksum == null ? null : "'" + this.checksum + "'") + ", " +
-                "total=" + this.total + ", " +
-                "previousResults=" + this.previousResults + ", " +
-                "nextResults=" + this.nextResults +
-                "}";
+        return new StringJoiner(", ", Data.class.getSimpleName() + "{", "}")
+                .add("data=" + this.data)
+                .add("checksum=" + (this.checksum == null ? null : "'" + this.checksum + "'"))
+                .add("total=" + this.total)
+                .add("previousResults=" + this.previousResults)
+                .add("nextResults=" + this.nextResults)
+                .toString();
     }
 
     @Override
@@ -83,7 +92,7 @@ public abstract class Data<T> implements Serializable {
             return true;
         if (other == null || this.getClass() != other.getClass())
             return false;
-        Data<?> data = (Data<?>) other;
+        Data<?, ?> data = (Data<?, ?>) other;
         return  Objects.equals(this.data, data.data) &&
                 Objects.equals(this.checksum, data.checksum) &&
                 Objects.equals(this.total, data.total) &&

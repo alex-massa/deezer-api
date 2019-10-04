@@ -1,6 +1,7 @@
 package deezer.client;
 
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class DeezerClientException extends RuntimeException {
 
@@ -21,27 +22,39 @@ public class DeezerClientException extends RuntimeException {
          Integer code;
 
          public String getType() {
-             return type;
+             return this.type;
          }
 
-         public void setType(String type) {
+         public Error setType(String type) {
              this.type = type;
+             return this;
          }
 
          public String getMessage() {
-             return message;
+             return this.message;
          }
 
-         public void setMessage(String message) {
+         public Error setMessage(String message) {
              this.message = message;
+             return this;
          }
 
          public Integer getCode() {
-             return code;
+             return this.code;
          }
 
-         public void setCode(Integer code) {
+         public Error setCode(Integer code) {
              this.code = code;
+             return this;
+         }
+
+         @Override
+         public String toString() {
+             return new StringJoiner(", ", Error.class.getSimpleName() + "{", "}")
+                     .add("type=" + (this.type == null ? null : "'" + this.type + "'"))
+                     .add("message=" + (this.message == null ? null : "'" + this.message + "'"))
+                     .add("code=" + this.code)
+                     .toString();
          }
 
          @Override
@@ -78,16 +91,24 @@ public class DeezerClientException extends RuntimeException {
         super(message, throwable);
     }
 
-    public String getType() {
+    public String getErrorType() {
         return this.error.type;
     }
 
-    public String getMessage() {
+    public String getErrorMessage() {
         return this.error.message;
     }
 
-    public Integer code() {
+    public Integer getErrorCode() {
         return this.error.code;
+    }
+
+    @Override
+    public String getMessage() {
+        if (this.error == null)
+            return super.getMessage();
+        return String.format("Received API response: %s (type: %s, code: %d)",
+                this.error.message, this.error.type, this.error.code);
     }
 
 }

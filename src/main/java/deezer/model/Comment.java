@@ -5,6 +5,7 @@ import deezer.model.interfaces.Commentable;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Comment implements Serializable {
 
@@ -63,13 +64,13 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return  "Comment{" +
-                "id=" + this.id + ", " +
-                "text=" + (this.text == null ? null : "'" + this.text + "'") + ", " +
-                "date=" + this.date + ", " +
-                "object=" + this.object + ", " +
-                "author=" + this.author +
-                "}";
+        return new StringJoiner(", ", Comment.class.getSimpleName() + "{", "}")
+                .add("id=" + this.id)
+                .add("text=" + (this.text == null ? null : "'" + this.text + "'"))
+                .add("date=" + this.date)
+                .add("object=" + this.object)
+                .add("author=" + this.author)
+                .toString();
     }
 
     @Override

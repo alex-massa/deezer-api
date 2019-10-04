@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Album implements Serializable, Searchable, Commentable {
 
@@ -29,7 +30,9 @@ public class Album implements Serializable, Searchable, Commentable {
         public static final int NO_ADVICE_AVAILABLE = 6;
         public static final int PARTIALLY_NO_ADVICE_AVAILABLE = 7;
 
-        private ExplicitContentLevels() {}
+        private ExplicitContentLevels() {
+            throw new UnsupportedOperationException();
+        }
 
     }
 
@@ -344,37 +347,37 @@ public class Album implements Serializable, Searchable, Commentable {
 
     @Override
     public String toString() {
-        return  "Album{" +
-                "id=" + this.id + ", " +
-                "title=" + (this.title == null ? null : "'" + this.title + "'") + ", " +
-                "upc=" + (this.upc == null ? null : "'" + this.upc + "'") + ", " +
-                "link=" + this.link + ", " +
-                "share=" + this.share + ", " +
-                "cover=" + this.cover + ", " +
-                "smallCover=" + this.smallCover + ", " +
-                "mediumCover=" + this.mediumCover + ", " +
-                "bigCover=" + this.bigCover + ", " +
-                "xlCover=" + this.xlCover + ", " +
-                "genreId=" + this.genreId + ", " +
-                "genres=" + this.genres + ", " +
-                "label=" + (this.label == null ? null : "'" + this.label + "'") + ", " +
-                "numberOfTracks=" + this.numberOfTracks + ", " +
-                "duration=" + this.duration + ", " +
-                "numberOfFans=" + this.numberOfFans + ", " +
-                "rating=" + this.rating + ", " +
-                "releaseDate=" + this.releaseDate + ", " +
-                "recordType=" + (this.recordType == null ? null : "'" + this.recordType + "'") + ", " +
-                "isAvailable=" + this.isAvailable + ", " +
-                "alternative=" + this.alternative + ", " +
-                "tracklist=" + this.tracklist + ", " +
-                "hasExplicitLyrics=" + this.hasExplicitLyrics + ", " +
-                "explicitContentLyrics=" + this.explicitContentLyrics + ", " +
-                "explicitContentCover=" + this.explicitContentCover + ", " +
-                "contributors=" + this.contributors + ", " +
-                "artist=" + this.artist + ", " +
-                "tracks=" + this.tracks + ", " +
-                "position=" + this.position +
-                "}";
+        return new StringJoiner(", ", Album.class.getSimpleName() + "{", "}")
+                .add("id=" + this.id)
+                .add("title=" + (this.title == null ? null : "'" + this.title + "'"))
+                .add("upc=" + (this.upc == null ? null : "'" + this.upc + "'"))
+                .add("link=" + this.link)
+                .add("share=" + this.share)
+                .add("cover=" + this.cover)
+                .add("smallCover=" + this.smallCover)
+                .add("mediumCover=" + this.mediumCover)
+                .add("bigCover=" + this.bigCover)
+                .add("xlCover=" + this.xlCover)
+                .add("genreId=" + this.genreId)
+                .add("genres=" + this.genres)
+                .add("label=" + (this.label == null ? null : "'" + this.label + "'"))
+                .add("numberOfTracks=" + this.numberOfTracks)
+                .add("duration=" + this.duration)
+                .add("numberOfFans=" + this.numberOfFans)
+                .add("rating=" + this.rating)
+                .add("releaseDate=" + this.releaseDate)
+                .add("recordType=" + (this.recordType == null ? null : "'" + this.recordType + "'"))
+                .add("isAvailable=" + this.isAvailable)
+                .add("alternative=" + this.alternative)
+                .add("tracklist=" + this.tracklist)
+                .add("hasExplicitLyrics=" + this.hasExplicitLyrics)
+                .add("explicitContentLyrics=" + this.explicitContentLyrics)
+                .add("explicitContentCover=" + this.explicitContentCover)
+                .add("contributors=" + this.contributors)
+                .add("artist=" + this.artist)
+                .add("tracks=" + this.tracks)
+                .add("position=" + this.position)
+                .toString();
     }
 
     @Override

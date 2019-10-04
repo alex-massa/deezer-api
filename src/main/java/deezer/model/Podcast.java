@@ -7,6 +7,7 @@ import util.URLTypeAdapter;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Podcast implements Serializable {
 
@@ -154,21 +155,21 @@ public class Podcast implements Serializable {
 
     @Override
     public String toString() {
-        return  "Podcast{" +
-                "id=" + this.id + ", " +
-                "title=" + (this.title == null ? null : "'" + this.title + "'") + ", " +
-                "description='" + this.description + "', " +
-                "isAvailable=" + this.isAvailable + ", " +
-                "rating=" + this.rating + ", " +
-                "numberOfFans=" + this.numberOfFans + ", " +
-                "link=" + this.link + ", " +
-                "picture=" + this.picture + ", " +
-                "smallPicture=" + this.smallPicture + ", " +
-                "mediumPicture=" + this.mediumPicture + ", " +
-                "bigPicture=" + this.bigPicture + ", " +
-                "xlPicture=" + this.xlPicture + ", " +
-                "position=" + this.position +
-                "}";
+        return new StringJoiner(", ", Podcast.class.getSimpleName() + "{", "}")
+                .add("id=" + this.id)
+                .add("title=" + (this.title == null ? null : "'" + this.title + "'"))
+                .add("description=" + (this.description == null ? null : "'" + this.description + "'"))
+                .add("isAvailable=" + this.isAvailable)
+                .add("rating=" + this.rating)
+                .add("numberOfFans=" + this.numberOfFans)
+                .add("link=" + this.link)
+                .add("picture=" + this.picture)
+                .add("smallPicture=" + this.smallPicture)
+                .add("mediumPicture=" + this.mediumPicture)
+                .add("bigPicture=" + this.bigPicture)
+                .add("xlPicture=" + this.xlPicture)
+                .add("position=" + this.position)
+                .toString();
     }
 
     @Override

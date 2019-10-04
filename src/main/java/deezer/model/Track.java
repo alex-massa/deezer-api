@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Track implements Serializable, Searchable {
 
@@ -23,7 +24,9 @@ public class Track implements Serializable, Searchable {
         public static final int EDITED = 3;
         public static final int NO_ADVICE_AVAILABLE = 6;
 
-        private ExplicitContentLevels() {}
+        private ExplicitContentLevels() {
+            throw new UnsupportedOperationException();
+        }
 
     }
 
@@ -304,34 +307,34 @@ public class Track implements Serializable, Searchable {
 
     @Override
     public String toString() {
-        return  "Track{" +
-                "id=" + this.id + ", " +
-                "isReadable=" + this.isReadable + ", " +
-                "title=" + (this.title == null ? null : "'" + this.title + "'") + ", " +
-                "shortTitle=" + (this.shortTitle == null ? null : "'" + this.shortTitle + "'") + ", " +
-                "titleVersion=" + (this.titleVersion == null ? null : "'" + this.titleVersion + "'") + ", " +
-                "isUnseen=" + this.isUnseen + ", " +
-                "isrc=" + (this.isrc == null ? null : "'" + this.isrc + "'") + ", " +
-                "link=" + this.link + ", " +
-                "share=" + this.share + ", " +
-                "duration=" + this.duration + ", " +
-                "trackPosition=" + this.trackPosition + ", " +
-                "diskNumber=" + this.diskNumber + ", " +
-                "rank=" + this.rank + ", " +
-                "releaseDate=" + this.releaseDate + ", " +
-                "hasExplicitLyrics=" + this.hasExplicitLyrics + ", " +
-                "explicitContentLyrics=" + this.explicitContentLyrics + ", " +
-                "explicitContentCover=" + this.explicitContentCover + ", " +
-                "preview=" + this.preview + ", " +
-                "bpm=" + this.bpm + ", " +
-                "gain=" + this.gain + ", " +
-                "availableCounties=" + this.availableCounties + ", " +
-                "alternative=" + this.alternative + ", " +
-                "contributors=" + this.contributors + ", " +
-                "artist=" + this.artist + ", " +
-                "album=" + this.album + ", " +
-                "position=" + this.position +
-                "}";
+        return new StringJoiner(", ", Track.class.getSimpleName() + "{", "}")
+                .add("id=" + this.id)
+                .add("isReadable=" + this.isReadable)
+                .add("title=" + (this.title == null ? null : "'" + this.title + "'"))
+                .add("shortTitle=" + (this.shortTitle == null ? null : "'" + this.shortTitle + "'"))
+                .add("titleVersion=" + (this.titleVersion == null ? null : "'" + this.titleVersion + "'"))
+                .add("isUnseen=" + this.isUnseen)
+                .add("isrc=" + (this.isrc == null ? null : "'" + this.isrc + "'"))
+                .add("link=" + this.link)
+                .add("share=" + this.share)
+                .add("duration=" + this.duration)
+                .add("trackPosition=" + this.trackPosition)
+                .add("diskNumber=" + this.diskNumber)
+                .add("rank=" + this.rank)
+                .add("releaseDate=" + this.releaseDate)
+                .add("hasExplicitLyrics=" + this.hasExplicitLyrics)
+                .add("explicitContentLyrics=" + this.explicitContentLyrics)
+                .add("explicitContentCover=" + this.explicitContentCover)
+                .add("preview=" + this.preview)
+                .add("bpm=" + this.bpm)
+                .add("gain=" + this.gain)
+                .add("availableCounties=" + this.availableCounties)
+                .add("alternative=" + this.alternative)
+                .add("contributors=" + this.contributors)
+                .add("artist=" + this.artist)
+                .add("album=" + this.album)
+                .add("position=" + this.position)
+                .toString();
     }
 
     @Override

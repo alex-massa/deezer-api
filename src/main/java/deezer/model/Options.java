@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Options implements Serializable {
 
@@ -144,20 +145,20 @@ public class Options implements Serializable {
 
     @Override
     public String toString() {
-        return  "Options{" +
-                "canStream=" + this.canStream + ", " +
-                "streamingDuration=" + this.streamingDuration + ", " +
-                "canUseOfflineMode=" + this.canUseOfflineMode + ", " +
-                "canActivateHq=" + this.canActivateHq + ", " +
-                "displaysAds=" + this.displaysAds + ", " +
-                "activatesAudioAds=" + this.activatesAudioAds + ", " +
-                "tooManyDevices=" + this.tooManyDevices + ", " +
-                "canSubscribe=" + this.canSubscribe + ", " +
-                "radioSkips=" + this.radioSkips + ", " +
-                "isLosslessAvailable=" + this.isLosslessAvailable + ", " +
-                "canDisplayPreviews=" + this.canDisplayPreviews + ", " +
-                "canStreamRadio=" + this.canStreamRadio +
-                "}";
+        return new StringJoiner(", ", Options.class.getSimpleName() + "{", "}")
+                .add("canStream=" + this.canStream)
+                .add("streamingDuration=" + this.streamingDuration)
+                .add("canUseOfflineMode=" + this.canUseOfflineMode)
+                .add("canActivateHq=" + this.canActivateHq)
+                .add("displaysAds=" + this.displaysAds)
+                .add("activatesAudioAds=" + this.activatesAudioAds)
+                .add("tooManyDevices=" + this.tooManyDevices)
+                .add("canSubscribe=" + this.canSubscribe)
+                .add("radioSkips=" + this.radioSkips)
+                .add("isLosslessAvailable=" + this.isLosslessAvailable)
+                .add("canDisplayPreviews=" + this.canDisplayPreviews)
+                .add("canStreamRadio=" + this.canStreamRadio)
+                .toString();
     }
 
     @Override

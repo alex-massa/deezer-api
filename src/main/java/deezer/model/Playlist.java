@@ -9,6 +9,7 @@ import util.URLTypeAdapter;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Playlist implements Serializable, Searchable {
 
@@ -251,30 +252,30 @@ public class Playlist implements Serializable, Searchable {
 
     @Override
     public String toString() {
-        return  "Playlist{" +
-                "id=" + this.id + ", " +
-                "title=" + (this.title == null ? null : "'" + this.title + "'") + ", " +
-                "description=" + (this.description == null ? null : "'" + this.description + "'") + ", " +
-                "duration=" + this.duration + ", " +
-                "isPublic=" + this.isPublic + ", " +
-                "isLovedTracksPlaylist=" + this.isLovedTracksPlaylist + ", " +
-                "isCollaborative=" + this.isCollaborative + ", " +
-                "rating=" + this.rating + ", " +
-                "numberOfTracks=" + this.numberOfTracks + ", " +
-                "unseenTracksCount=" + this.unseenTracksCount + ", " +
-                "numberOfFans=" + this.numberOfFans + ", " +
-                "link=" + this.link + ", " +
-                "share=" + this.share + ", " +
-                "picture=" + this.picture + ", " +
-                "smallPicture=" + this.smallPicture + ", " +
-                "mediumPicture=" + this.mediumPicture + ", " +
-                "bigPicture=" + this.bigPicture + ", " +
-                "xlPicture=" + this.xlPicture + ", " +
-                "checksum=" + (this.checksum == null ? null : "'" + this.checksum + "'") + ", " +
-                "creator=" + this.creator + ", " +
-                "tracks=" + this.tracks + ", " +
-                "position=" + this.position +
-                "}";
+        return new StringJoiner(", ", Playlist.class.getSimpleName() + "{", "}")
+                .add("id=" + this.id)
+                .add("title=" + (this.title == null ? null : "'" + this.title + "'"))
+                .add("description=" + (this.description == null ? null : "'" + this.description + "'"))
+                .add("duration=" + this.duration)
+                .add("isPublic=" + this.isPublic)
+                .add("isLovedTracksPlaylist=" + this.isLovedTracksPlaylist)
+                .add("isCollaborative=" + this.isCollaborative)
+                .add("rating=" + this.rating)
+                .add("numberOfTracks=" + this.numberOfTracks)
+                .add("unseenTracksCount=" + this.unseenTracksCount)
+                .add("numberOfFans=" + this.numberOfFans)
+                .add("link=" + this.link)
+                .add("share=" + this.share)
+                .add("picture=" + this.picture)
+                .add("smallPicture=" + this.smallPicture)
+                .add("mediumPicture=" + this.mediumPicture)
+                .add("bigPicture=" + this.bigPicture)
+                .add("xlPicture=" + this.xlPicture)
+                .add("checksum=" + (this.checksum == null ? null : "'" + this.checksum + "'"))
+                .add("creator=" + this.creator)
+                .add("tracks=" + this.tracks)
+                .add("position=" + this.position)
+                .toString();
     }
 
     @Override

@@ -7,6 +7,7 @@ import util.URLTypeAdapter;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Offer implements Serializable {
 
@@ -110,17 +111,17 @@ public class Offer implements Serializable {
 
     @Override
     public String toString() {
-        return  "Offer{" +
-                "id=" + this.id + ", " +
-                "name=" + (this.name == null ? null : "'" + this.name + "'") + ", " +
-                "amount=" + this.amount + ", " +
-                "currency=" + (this.currency == null ? null : "'" + this.currency + "'") + ", " +
-                "displayedAmount=" + (this.displayedAmount == null ? null : "'" + this.displayedAmount + "'") + ", " +
-                "termsAndConditions=" + this.termsAndConditions + ", " +
-                "htmlTermsAndConditions=" + this.htmlTermsAndConditions + ", " +
-                "textTermsAndConditions=" + this.textTermsAndConditions + ", " +
-                "tryAndBuy=" + this.tryAndBuy +
-                "}";
+        return new StringJoiner(", ", Offer.class.getSimpleName() + "{", "}")
+                .add("id=" + this.id)
+                .add("name=" + (this.name == null ? null : "'" + this.name + "'"))
+                .add("amount=" + this.amount)
+                .add("currency=" + (this.currency == null ? null : "'" + this.currency + "'"))
+                .add("displayedAmount=" + (this.displayedAmount == null ? null : "'" + this.displayedAmount + "'"))
+                .add("termsAndConditions=" + this.termsAndConditions)
+                .add("htmlTermsAndConditions=" + this.htmlTermsAndConditions)
+                .add("textTermsAndConditions=" + this.textTermsAndConditions)
+                .add("tryAndBuy=" + this.tryAndBuy)
+                .toString();
     }
 
     @Override
