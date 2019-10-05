@@ -6,11 +6,12 @@ import util.URLTypeAdapter;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-public abstract class Data<T, D extends Data<T, D>> implements Serializable {
+public abstract class Data<T, D extends Data<T, D>> implements Serializable, Iterable<T> {
 
     private static final long serialVersionUID = 1L;
 
@@ -74,6 +75,11 @@ public abstract class Data<T, D extends Data<T, D>> implements Serializable {
     }
 
     protected abstract D self();
+
+    @Override
+    public Iterator<T> iterator() {
+        return this.data.iterator();
+    }
 
     @Override
     public String toString() {
