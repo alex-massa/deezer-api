@@ -420,17 +420,17 @@ public class DeezerClient {
 
     public Genre getGenre(final long genreId) {
         return this.requestsCarrier.get
-                (DeezerClient.API_OBJECT_GENRE, Genre.class);
+                (DeezerClient.API_OBJECT_GENRE, genreId, Genre.class);
     }
 
-    public Artists getGenreArtists(final long genreId) {    // seems to always return an empty array
+    public Artists getGenreArtists(final long genreId) {
         return this.requestsCarrier.get
-                (DeezerClient.API_OBJECT_GENRE, Artists.class);
+                (DeezerClient.API_OBJECT_GENRE, genreId, "artists", Artists.class);
     }
 
     public Radios getGenreRadios(final long genreId) {
         return this.requestsCarrier.get
-                (DeezerClient.API_OBJECT_GENRE, Radios.class);
+                (DeezerClient.API_OBJECT_GENRE, genreId, "radios", Radios.class);
     }
 
     /*
@@ -534,7 +534,7 @@ public class DeezerClient {
                 (DeezerClient.API_OBJECT_RADIO, Radios.class);
     }
 
-    public Radios getGenreRadios() {
+    public Radios getGenresRadios() {
         return this.requestsCarrier.get
                 (DeezerClient.API_OBJECT_RADIO, "genres", Radios.class);
     }
