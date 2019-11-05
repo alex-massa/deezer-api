@@ -44,13 +44,17 @@ public class User implements Serializable, Searchable {
     private URL link;
     @JsonAdapter(URLTypeAdapter.class)
     private URL picture;
-    @SerializedName("picture_small") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("picture_small")
     private URL smallPicture;
-    @SerializedName("picture_medium") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("picture_medium")
     private URL mediumPicture;
-    @SerializedName("picture_big") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("picture_big")
     private URL bigPicture;
-    @SerializedName("picture_xl") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("picture_xl")
     private URL xlPicture;
     private String country;
     @SerializedName("lang")
@@ -61,7 +65,7 @@ public class User implements Serializable, Searchable {
     private String explicitContentLevel;
     @SerializedName("explicit_content_levels_available")
     private List<String> availableExplicitContentLevels;
-    @SerializedName("tracklist") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
     private URL tracklist;
 
     public Long getId() {

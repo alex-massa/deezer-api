@@ -45,13 +45,17 @@ public class Album implements Serializable, Searchable, Commentable {
     private URL share;
     @JsonAdapter(URLTypeAdapter.class)
     private URL cover;
-    @SerializedName("cover_small") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("cover_small")
     private URL smallCover;
-    @SerializedName("cover_medium") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("cover_medium")
     private URL mediumCover;
-    @SerializedName("cover_big") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("cover_big")
     private URL bigCover;
-    @SerializedName("cover_xl") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("cover_xl")
     private URL xlCover;
     @SerializedName("genre_id")
     private Long genreId;

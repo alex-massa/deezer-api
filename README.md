@@ -2,7 +2,7 @@
 A Java wrapper for the Deezer API.
 
 ## Installation
-Run the Maven goal `mvn clean install` on the project root containing the `pom.xml` file, then include the artifact's dependency in your project.
+Run the Maven goal `mvn install` on the project root containing the `pom.xml` file, then include the artifact's dependency in your project.
 ```xml
 <dependency>
     <groupId>deezer-api</groupId>

@@ -6,6 +6,7 @@ import deezer.model.search.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class DeezerClient {
 
@@ -700,50 +701,37 @@ public class DeezerClient {
         StringBuilder queryBuilder = new StringBuilder();
         try {
             if (search.getQuery() != null)
-                queryBuilder.append(URLEncoder.encode(search.getQuery(), "utf-8"));
+                queryBuilder.append(URLEncoder.encode(search.getQuery(), StandardCharsets.UTF_8.toString()));
             if (search instanceof TracksSearch) {                           // This is really dirty and the entire
                 final TracksSearch searchTracks = (TracksSearch) search;    // search section should get redesigned
                 if (searchTracks.getArtistQuery() != null)
-                    queryBuilder.append(String.format("%s:\"%s\"",
-                            URLEncoder.encode(" artist", "utf-8"),
-                            URLEncoder.encode(searchTracks.getArtistQuery(), "utf-8")));
+                    queryBuilder.append(String.format("+artist:\"%s\"",
+                            URLEncoder.encode(searchTracks.getArtistQuery(), StandardCharsets.UTF_8.toString())));
                 if (searchTracks.getAlbumQuery() != null)
-                    queryBuilder.append(String.format("%s:\"%s\"",
-                            URLEncoder.encode(" album", "utf-8"),
-                            URLEncoder.encode(searchTracks.getAlbumQuery(), "utf-8")));
+                    queryBuilder.append(String.format("+album:\"%s\"",
+                            URLEncoder.encode(searchTracks.getAlbumQuery(), StandardCharsets.UTF_8.toString())));
                 if (searchTracks.getTrackQuery() != null)
-                    queryBuilder.append(String.format("%s:\"%s\"",
-                            URLEncoder.encode(" track", "utf-8"),
-                            URLEncoder.encode(searchTracks.getTrackQuery(), "utf-8")));
+                    queryBuilder.append(String.format("+track:\"%s\"",
+                            URLEncoder.encode(searchTracks.getTrackQuery(), StandardCharsets.UTF_8.toString())));
                 if (searchTracks.getLabelQuery() != null)
-                    queryBuilder.append(String.format("%s:\"%s\"",
-                            URLEncoder.encode(" label", "utf-8"),
-                            URLEncoder.encode(searchTracks.getLabelQuery(), "utf-8")));
+                    queryBuilder.append(String.format("+label:\"%s\"",
+                            URLEncoder.encode(searchTracks.getLabelQuery(), StandardCharsets.UTF_8.toString())));
                 if (searchTracks.getMinDuration() != null)
-                    queryBuilder.append(String.format("%s:%d",
-                            URLEncoder.encode(" dur_min", "utf-8"),
-                            searchTracks.getMinDuration()));
+                    queryBuilder.append(String.format("+dur_min:%d", searchTracks.getMinDuration()));
                 if (searchTracks.getMaxDuration() != null)
-                    queryBuilder.append(String.format("%s:%d",
-                            URLEncoder.encode(" dur_max", "utf-8"),
-                            searchTracks.getMaxDuration()));
+                    queryBuilder.append(String.format("+dur_max:%d", searchTracks.getMaxDuration()));
                 if (searchTracks.getMinBpm() != null)
-                    queryBuilder.append(String.format("%s:%d",
-                            URLEncoder.encode(" bpm_min", "utf-8"),
-                            searchTracks.getMinBpm()));
+                    queryBuilder.append(String.format("+bpm_min:%d", searchTracks.getMinBpm()));
                 if (searchTracks.getMaxBpm() != null)
-                    queryBuilder.append(String.format("%s:%d",
-                            URLEncoder.encode(" max_bpm", "utf-8"),
-                            searchTracks.getMaxBpm()));
+                    queryBuilder.append(String.format("+max_bpm:%d", searchTracks.getMaxBpm()));
                 if (searchTracks.getOrder() != null)
-                    queryBuilder.append(String.format
-                            ("&order=%s", searchTracks.getOrder()));
+                    queryBuilder.append(String.format("&order=%s", searchTracks.getOrder()));
             }
             if (search.isStrict())
                 queryBuilder.append("&strict=on");
             return queryBuilder.toString();
         } catch (UnsupportedEncodingException e) {
-            throw new DeezerClientException(e);
+            throw new RuntimeException(e);
         }
     }
 

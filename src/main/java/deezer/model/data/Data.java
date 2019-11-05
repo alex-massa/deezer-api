@@ -1,8 +1,6 @@
 package deezer.model.data;
 
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import util.URLTypeAdapter;
 
 import java.io.Serializable;
 import java.net.URL;
@@ -18,9 +16,9 @@ public abstract class Data<T, D extends Data<T, D>> implements Serializable, Ite
     List<T> data;
     String checksum;
     Integer total;
-    @SerializedName("prev") @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("prev")
     URL previousResults;
-    @SerializedName("next") @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("next")
     URL nextResults;
 
     public List<T> getData() {

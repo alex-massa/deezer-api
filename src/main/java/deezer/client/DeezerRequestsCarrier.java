@@ -24,105 +24,105 @@ class DeezerRequestsCarrier {
     <T> T get(final String object,
               Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object,
               final int index, Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "?index=" + index;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "?index=" + index;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object,
               final int index, final int limit, Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "?index=" + index + "&limit=" + limit;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "?index=" + index + "&limit=" + limit;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final String method,
               Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + method;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + method;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final String method,
               final int index, Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + method + "?index=" + index;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + method + "?index=" + index;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final String method,
               final int index, final int limit, Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + method + "?index=" + index + "&limit=" + limit;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + method + "?index=" + index + "&limit=" + limit;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final Long id,
               Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + id;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + id;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final Long id,
               final int index, Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + id + "?index=" + index;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + id + "?index=" + index;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final Long id,
               final int index, final int limit, Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + id + "?index=" + index + "&limit=" + limit;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + id + "?index=" + index + "&limit=" + limit;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final Long id, final String method,
               Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + id + "/" + method;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + id + "/" + method;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final Long id, final String method,
               final int index, Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + id + "/" + method + "?index=" + index;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + id + "/" + method + "?index=" + index;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final Long id, final String method,
               final int index, final int limit, Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + id + "/" + method + "?index=" + index + "&limit=" + limit;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + id + "/" + method + "?index=" + index + "&limit=" + limit;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final String method,
               final String query, Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + method + "?q=" + query;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + method + "?q=" + query;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final String method,
               final String query, final int index, Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + method + "?q=" + query + "&index=" + index;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + method + "?q=" + query + "&index=" + index;
         return this.getData(url, targetClass);
     }
 
     <T> T get(final String object, final String method,
               final String query, final int index, final int limit, Class<T> targetClass) {
         final String url =
-                DEEZER_API_URL + "/" + object + "/" + method + "?q=" + query + "&index=" + index + "&limit=" + limit;
+                DeezerRequestsCarrier.DEEZER_API_URL + "/" + object + "/" + method + "?q=" + query + "&index=" + index + "&limit=" + limit;
         return this.getData(url, targetClass);
     }
 
@@ -130,22 +130,21 @@ class DeezerRequestsCarrier {
         try {
             final String response = this.requestData(url);
             if (response.startsWith("{\"error")) {
-                JsonObject errorObject = mapper.fromJson(response, JsonObject.class);
+                JsonObject errorObject = this.mapper.fromJson(response, JsonObject.class);
                 DeezerClientException.Error error =
-                        mapper.fromJson(errorObject.get("error"), DeezerClientException.Error.class);
-                throw new DeezerClientException(error);
+                        this.mapper.fromJson(errorObject.get("error"), DeezerClientException.Error.class);
+                throw new DeezerClientException(url, error);
             }
             return this.mapper.fromJson(response, targetClass);
         } catch (DeezerClientException e) {
             throw e;
         } catch (Exception e) {
-            throw new DeezerClientException
-                    ("An exception occurred while processing a request to URL " + url, e);
+            throw new DeezerClientException(url, e);
         }
     }
 
-    private String requestData(final String toRequest) throws IOException {
-        URL url = new URL(toRequest);
+    private String requestData(final String requestedUrl) throws IOException {
+        URL url = new URL(requestedUrl);
         try (BufferedReader reader = new BufferedReader
                 (new InputStreamReader(url.openStream()))) {
             StringBuilder resultBuilder = new StringBuilder();

@@ -17,13 +17,17 @@ public class Editorial implements Serializable {
     private String name;
     @JsonAdapter(URLTypeAdapter.class)
     private URL picture;
-    @SerializedName("picture_small") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("picture_small")
     private URL smallPicture;
-    @SerializedName("picture_medium") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("picture_medium")
     private URL mediumPicture;
-    @SerializedName("picture_big") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("picture_big")
     private URL bigPicture;
-    @SerializedName("picture_xl") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("picture_xl")
     private URL xlPicture;
 
     public Long getId() {

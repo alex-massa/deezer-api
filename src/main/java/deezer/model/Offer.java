@@ -19,11 +19,14 @@ public class Offer implements Serializable {
     private String currency;
     @SerializedName("displayed_amount")
     private String displayedAmount;
-    @SerializedName("tc") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("tc")
     private URL termsAndConditions;
-    @SerializedName("tc_html") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("tc_html")
     private URL htmlTermsAndConditions;
-    @SerializedName("tc_txt") @JsonAdapter(URLTypeAdapter.class)
+    @JsonAdapter(URLTypeAdapter.class)
+    @SerializedName("tc_txt")
     private URL textTermsAndConditions;
     @SerializedName("try_and_buy")
     private Integer tryAndBuy;
