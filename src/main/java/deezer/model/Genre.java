@@ -97,7 +97,7 @@ public class Genre implements Serializable {
     public String toString() {
         return new StringJoiner(", ", Genre.class.getSimpleName() + "{", "}")
                 .add("id=" + this.id)
-                .add("name=" + (this.name == null ? null : "'" + this.name + "'"))
+                .add("name=" + this.name)
                 .add("picture=" + this.picture)
                 .add("smallPicture=" + this.smallPicture)
                 .add("mediumPicture=" + this.mediumPicture)

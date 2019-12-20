@@ -17,7 +17,7 @@ public class RadiosSearch extends Search<Searchable> {
     @Override
     public String toString() {
         return new StringJoiner(", ", RadiosSearch.class.getSimpleName() + "{", "}")
-                .add("query=" + (this.query == null ? null : "'" + this.query + "'"))
+                .add("query=" + this.query)
                 .add("strict=" + this.strict)
                 .toString();
     }

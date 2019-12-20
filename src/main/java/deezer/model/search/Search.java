@@ -40,7 +40,7 @@ public abstract class Search<T extends Searchable> {
     @Override
     public String toString() {
         return new StringJoiner(", ", Search.class.getSimpleName() + "{", "}")
-                .add("query=" + (this.query == null ? null : "'" + this.query + "'"))
+                .add("query=" + this.query)
                 .add("strict=" + this.strict)
                 .toString();
     }

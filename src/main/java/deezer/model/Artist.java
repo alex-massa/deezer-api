@@ -176,7 +176,7 @@ public class Artist implements Serializable, Searchable, Commentable {
     public String toString() {
         return new StringJoiner(", ", Artist.class.getSimpleName() + "{", "}")
                 .add("id=" + this.id)
-                .add("name=" + (this.name == null ? null : "'" + this.name + "'"))
+                .add("name=" + this.name)
                 .add("link=" + this.link)
                 .add("share=" + this.share)
                 .add("picture=" + this.picture)

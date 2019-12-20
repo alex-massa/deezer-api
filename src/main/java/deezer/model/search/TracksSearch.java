@@ -134,15 +134,15 @@ public class TracksSearch extends Search<Searchable> {
     public String toString() {
         return new StringJoiner(", ", TracksSearch.class.getSimpleName() + "{", "}")
                 .add("order=" + this.order)
-                .add("artistQuery=" + (this.artistQuery == null ? null : "'" + this.artistQuery + "'"))
-                .add("albumQuery=" + (this.albumQuery == null ? null : "'" + this.albumQuery + "'"))
-                .add("trackQuery=" + (this.trackQuery == null ? null : "'" + this.trackQuery + "'"))
-                .add("labelQuery=" + (this.labelQuery == null ? null : "'" + this.labelQuery + "'"))
+                .add("artistQuery=" + this.artistQuery)
+                .add("albumQuery=" + this.albumQuery)
+                .add("trackQuery=" + this.trackQuery)
+                .add("labelQuery=" + this.labelQuery)
                 .add("minDuration=" + this.minDuration)
                 .add("maxDuration=" + this.maxDuration)
                 .add("minBpm=" + this.minBpm)
                 .add("maxBpm=" + this.maxBpm)
-                .add("query=" + (this.query == null ? null : "'" + this.query + "'"))
+                .add("query=" + this.query)
                 .add("strict=" + this.strict)
                 .toString();
     }

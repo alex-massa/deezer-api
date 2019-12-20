@@ -161,8 +161,8 @@ public class Podcast implements Serializable {
     public String toString() {
         return new StringJoiner(", ", Podcast.class.getSimpleName() + "{", "}")
                 .add("id=" + this.id)
-                .add("title=" + (this.title == null ? null : "'" + this.title + "'"))
-                .add("description=" + (this.description == null ? null : "'" + this.description + "'"))
+                .add("title=" + this.title)
+                .add("description=" + this.description)
                 .add("isAvailable=" + this.isAvailable)
                 .add("rating=" + this.rating)
                 .add("numberOfFans=" + this.numberOfFans)

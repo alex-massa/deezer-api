@@ -10,15 +10,10 @@ public class Genres extends Data<Genre, Genres> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Override
-    protected Genres self() {
-        return this;
-    }
-
-    @Override
     public String toString() {
         return new StringJoiner(", ", Genres.class.getSimpleName() + "{", "}")
                 .add("data=" + this.data)
-                .add("checksum=" + (this.checksum == null ? null : "'" + this.checksum + "'"))
+                .add("checksum=" + this.checksum)
                 .add("total=" + this.total)
                 .add("previousResults=" + this.previousResults)
                 .add("nextResults=" + this.nextResults)

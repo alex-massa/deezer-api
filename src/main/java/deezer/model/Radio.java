@@ -130,8 +130,8 @@ public class Radio implements Serializable, Searchable {
     public String toString() {
         return new StringJoiner(", ", Radio.class.getSimpleName() + "{", "}")
                 .add("radio=" + this.radio)
-                .add("title=" + (this.title == null ? null : "'" + this.title + "'"))
-                .add("description=" + (this.description == null ? null : "'" + this.description + "'"))
+                .add("title=" + this.title)
+                .add("description=" + this.description)
                 .add("share=" + this.share)
                 .add("picture=" + this.picture)
                 .add("smallPicture=" + this.smallPicture)

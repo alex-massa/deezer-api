@@ -57,8 +57,8 @@ public class Infos implements Serializable {
     @Override
     public String toString() {
         return new StringJoiner(", ", Infos.class.getSimpleName() + "{", "}")
-                .add("countryIso=" + (this.countryIso == null ? null : "'" + this.countryIso + "'"))
-                .add("country=" + (this.country == null ? null : "'" + this.country + "'"))
+                .add("countryIso=" + this.countryIso)
+                .add("country=" + this.country)
                 .add("isOpen=" + this.isOpen)
                 .add("offers=" + this.offers)
                 .toString();

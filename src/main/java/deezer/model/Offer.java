@@ -116,10 +116,10 @@ public class Offer implements Serializable {
     public String toString() {
         return new StringJoiner(", ", Offer.class.getSimpleName() + "{", "}")
                 .add("id=" + this.id)
-                .add("name=" + (this.name == null ? null : "'" + this.name + "'"))
+                .add("name=" + this.name)
                 .add("amount=" + this.amount)
-                .add("currency=" + (this.currency == null ? null : "'" + this.currency + "'"))
-                .add("displayedAmount=" + (this.displayedAmount == null ? null : "'" + this.displayedAmount + "'"))
+                .add("currency=" + this.currency)
+                .add("displayedAmount=" + this.displayedAmount)
                 .add("termsAndConditions=" + this.termsAndConditions)
                 .add("htmlTermsAndConditions=" + this.htmlTermsAndConditions)
                 .add("textTermsAndConditions=" + this.textTermsAndConditions)

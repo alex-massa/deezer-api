@@ -17,7 +17,7 @@ public class AlbumsSearch extends Search<Album> {
     @Override
     public String toString() {
         return new StringJoiner(", ", AlbumsSearch.class.getSimpleName() + "{", "}")
-                .add("query=" + (this.query == null ? null : "'" + this.query + "'"))
+                .add("query=" + this.query)
                 .add("strict=" + this.strict)
                 .toString();
     }

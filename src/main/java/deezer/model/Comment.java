@@ -66,7 +66,7 @@ public class Comment implements Serializable {
     public String toString() {
         return new StringJoiner(", ", Comment.class.getSimpleName() + "{", "}")
                 .add("id=" + this.id)
-                .add("text=" + (this.text == null ? null : "'" + this.text + "'"))
+                .add("text=" + this.text)
                 .add("date=" + this.date)
                 .add("object=" + this.object)
                 .add("author=" + this.author)

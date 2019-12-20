@@ -96,8 +96,8 @@ public class DeezerClientException extends RuntimeException {
         @Override
         public String toString() {
             return new StringJoiner(", ", Error.class.getSimpleName() + "{", "}")
-                    .add("type=" + (this.type == null ? null : "'" + this.type + "'"))
-                    .add("message=" + (this.message == null ? null : "'" + this.message + "'"))
+                    .add("type=" + this.type)
+                    .add("message=" + this.message)
                     .add("code=" + this.code)
                     .toString();
         }
@@ -122,4 +122,3 @@ public class DeezerClientException extends RuntimeException {
     }
 
 }
-

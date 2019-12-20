@@ -17,7 +17,7 @@ public class ArtistsSearch extends Search<Artist> {
     @Override
     public String toString() {
         return new StringJoiner(", ", ArtistsSearch.class.getSimpleName() + "{", "}")
-                .add("query=" + (this.query == null ? null : "'" + this.query + "'"))
+                .add("query=" + this.query)
                 .add("strict=" + this.strict)
                 .toString();
     }

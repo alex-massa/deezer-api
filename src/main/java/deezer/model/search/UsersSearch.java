@@ -17,7 +17,7 @@ public class UsersSearch extends Search<Searchable> {
     @Override
     public String toString() {
         return new StringJoiner(", ", UsersSearch.class.getSimpleName() + "{", "}")
-                .add("query=" + (this.query == null ? null : "'" + this.query + "'"))
+                .add("query=" + this.query)
                 .add("strict=" + this.strict)
                 .toString();
     }

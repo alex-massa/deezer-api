@@ -97,7 +97,7 @@ public class Editorial implements Serializable {
     public String toString() {
         return new StringJoiner(", ", Editorial.class.getSimpleName() + "{", "}")
                 .add("id=" + this.id)
-                .add("name=" + (this.name == null ? null : "'" + this.name + "'"))
+                .add("name=" + this.name)
                 .add("picture=" + this.picture)
                 .add("smallPicture=" + this.smallPicture)
                 .add("mediumPicture=" + this.mediumPicture)
